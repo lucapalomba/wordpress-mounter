@@ -1,0 +1,22 @@
+{
+  "core": "https://github.com/WordPress/WordPress.git",
+  "plugins": [
+    {
+      "link": "https://github.com/Yoast/wordpress-seo.git",
+      "name": "wordpress-seo",
+      "type": "git"
+    },
+    {
+      "link": "https://github.com/wp-plugins/wordpress-importer.git",
+      "name": "wordpress-importer",
+      "type": "git"
+    }
+  ],
+  "themes": [
+    {
+      "link": "https://github.com/mattbanks/WordPress-Starter-Theme.git",
+      "name": "WPStart",
+      "type": "git"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "WpStart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "author": "Luca Palomba",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-download": "0.0.1",
+    "gulp-git": "^1.7.0"
+  }
+}
