@@ -1,9 +1,16 @@
 var gulp = require('gulp');
 var download = require("gulp-download");
 var git = require('gulp-git');
-var bower = require('gulp-bower');
 var clean = require('gulp-clean');
 var options = require('./options.json');
+var decompress = require('gulp-decompress');
+
+
+
+//clean old package.
+gulp.task('test', function(cb) {
+});
+
 
 
 //clean old package.
@@ -19,15 +26,25 @@ gulp.task('cleanInstallation', function(cb) {
 });
 
 //get the core
-gulp.task('cloneWP',['clean'], function(cb) {
-  git.clone(options.core, {args: './package/wordpress'}, function(err) {
-    if(err)  console.log(err);
-    cb();
-  });
+gulp.task('createWP',['clean'], function(cb) {
+
+  var wordpressFolder = './package/wordpress';
+
+  switch(options.coreType) {
+    case 'git':
+      return  git.clone(options.core, {args: wordpressFolder}, function(err) {
+        if(err)  console.log(err);
+        cb();
+      });
+      break;
+    default:
+      return  download(options.core).pipe(decompress({strip: 1})).pipe(gulp.dest(wordpressFolder));
+  }
+
 });
 
 //get plugins (should be a series of callbacks.)
-gulp.task('clonePlugins',['cloneWP'], function(cb) {
+gulp.task('clonePlugins',['createWP'], function(cb) {
   var pluginsArray = options.plugins;
   var promisesSolved = 0;
 
@@ -47,7 +64,7 @@ gulp.task('clonePlugins',['cloneWP'], function(cb) {
 });
 
 //get themes
-gulp.task('cloneThemes',['cloneWP'], function(cb) {
+gulp.task('cloneThemes',['createWP'], function(cb) {
   var themesArray = options.themes;
   var promisesSolved = 0;
 
@@ -66,7 +83,7 @@ gulp.task('cloneThemes',['cloneWP'], function(cb) {
   }
 });
 
-gulp.task('default',['cloneWP','clonePlugins','cloneThemes','cleanInstallation'], function() {
+gulp.task('default',['createWP','clonePlugins','cloneThemes','cleanInstallation'], function() {
 
   //mount package
   gulp.src(['./package/wordpress/**/*']).pipe(gulp.dest('./output'));

@@ -1,5 +1,6 @@
 {
-  "core": "https://github.com/WordPress/WordPress.git",
+  "core": "https://it.wordpress.org/wordpress-4.4.2-it_IT.zip",
+  "coreType":"download",
   "plugins": [
     {
       "link": "https://github.com/Yoast/wordpress-seo.git",
