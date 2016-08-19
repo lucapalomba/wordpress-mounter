@@ -9,6 +9,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-decompress": "^1.2.0",
     "gulp-download": "0.0.1",
-    "gulp-git": "^1.7.0"
+    "gulp-git": "^1.7.0",
+    "gulp-rename": "^1.2.2"
   }
 }
